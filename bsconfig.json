@@ -1,0 +1,29 @@
+{
+  "name": "boxre",
+  "version": "0.1.0",
+  "bsc-flags": ["-bs-super-errors", "-bs-no-version-header"],
+  "refmt": 3,
+  "package-specs": [
+    {
+      "module": "commonjs"
+    },
+    {
+      "module": "es6"
+    }
+  ],
+  "sources": [
+    "src",
+    "src/vendor/wtf8",
+    "src/parser"
+  ],
+  "ppx-flags": [
+    "ppx-sedlex/ppx.js"
+  ],
+  "bs-dependencies" : [
+    "@elliottcable/bs-gen",
+    "@elliottcable/bs-uchar",
+    "bs-sedlex"
+  ],
+  "bs-dev-dependencies": [],
+  "namespace": false
+}

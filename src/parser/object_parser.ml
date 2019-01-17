@@ -421,14 +421,14 @@ module Object
           | Ast.Class.Body.Property (loc, p) ->
               let open Ast.Expression.Object.Property in
               (seen_constructor, begin match p.Ast.Class.Property.key with
-              | Identifier (_, x) when String.equal x "constructor" ||
-                (String.equal x "prototype" && p.Ast.Class.Property.static) ->
-                  error_at env (loc, Error.InvalidFieldName (x, String.equal x "prototype", false));
+              | Identifier (_, x) when x == "constructor" ||
+                (x == "prototype" && p.Ast.Class.Property.static) ->
+                  error_at env (loc, Error.InvalidFieldName (x, x == "prototype", false));
                   private_names
               | _ -> private_names
               end)
             | Ast.Class.Body.PrivateField (_, {Ast.Class.PrivateField.key = (loc, (_, name)); _})
-              when String.equal name "#constructor" ->
+              when name == "#constructor" ->
                 error_at env (loc, Error.InvalidFieldName (name, false, true));
                 (seen_constructor, private_names)
             | Ast.Class.Body.PrivateField (_, {Ast.Class.PrivateField.key = (loc, (_, name)); _}) ->

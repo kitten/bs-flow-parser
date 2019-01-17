@@ -5,6 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  *)
 
+type function_as_statement_record_t =
+  { in_strict_mode: bool }
+
 type t =
   | Assertion of string
   | UnexpectedToken of string
@@ -69,7 +72,7 @@ type t =
   | NoUninitializedConst
   | NoUninitializedDestructuring
   | NewlineBeforeArrow
-  | FunctionAsStatement of { in_strict_mode: bool }
+  | FunctionAsStatement of function_as_statement_record_t
   | AsyncFunctionAsStatement
   | GeneratorFunctionAsStatement
   | AdjacentJSXElements

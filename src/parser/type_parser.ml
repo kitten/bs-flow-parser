@@ -546,8 +546,8 @@ module Type (Parse: Parser_common.PARSER) : TYPE = struct
 
     in let error_invalid_property_name env is_class static key =
       let is_static = static <> None in
-      let is_constructor = String.equal "constructor" in
-      let is_prototype = String.equal "prototype" in
+      let is_constructor = (==) "constructor" in
+      let is_prototype = (==) "prototype" in
       match key with
       | Expression.Object.Property.Identifier (loc, name)
         when is_class && (is_constructor name || (is_static && is_prototype name)) ->

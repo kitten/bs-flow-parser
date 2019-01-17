@@ -5,11 +5,23 @@
  * LICENSE file in the root directory of this source tree.
  *)
 
-type t =
-  | T_NUMBER of { kind: number_type; raw: string }
+type number_record_t =
+  { kind: number_type; raw: string }
+
+and identifier_record_t =
+  { loc: Loc.t; value: string; raw: string }
+
+and jsx_identifier_record_t =
+  { raw: string }
+
+and number_singleton_type_record_t =
+  { kind: number_type; value: float; raw: string }
+
+and t =
+  | T_NUMBER of number_record_t
   | T_STRING of (Loc.t * string * string * bool) (* loc, value, raw, octal *)
   | T_TEMPLATE_PART of (Loc.t * template_part * bool) (* loc, value, is_tail *)
-  | T_IDENTIFIER of { loc: Loc.t; value: string; raw: string }
+  | T_IDENTIFIER of identifier_record_t
   | T_REGEXP of (Loc.t * string * string) (* /pattern/flags *)
   (* Syntax *)
   | T_LCURLY
@@ -128,7 +140,7 @@ type t =
   | T_ERROR of string
   | T_EOF
   (* JSX *)
-  | T_JSX_IDENTIFIER of { raw: string }
+  | T_JSX_IDENTIFIER of jsx_identifier_record_t
   | T_JSX_TEXT of (Loc.t * string * string) (* loc, value, raw *)
   (* Type primitives *)
   | T_ANY_TYPE
@@ -136,7 +148,7 @@ type t =
   | T_EMPTY_TYPE
   | T_BOOLEAN_TYPE of bool_or_boolean
   | T_NUMBER_TYPE
-  | T_NUMBER_SINGLETON_TYPE of { kind: number_type; value: float; raw: string }
+  | T_NUMBER_SINGLETON_TYPE of number_singleton_type_record_t
   | T_STRING_TYPE
   | T_VOID_TYPE
 

@@ -456,7 +456,7 @@ let string_escape env lexbuf =
   | 'x', hex_digit, hex_digit ->
     let str = lexeme lexbuf in
     let code = int_of_string ("0"^str) in (* 0xAB *)
-    env, str, [|code|], false
+    env, str, [|(Uchar.of_int code)|], false
 
   | '0'..'7', '0'..'7', '0'..'7' ->
     let str = lexeme lexbuf in
@@ -464,34 +464,34 @@ let string_escape env lexbuf =
     (* If the 3 character octal code is larger than 256
      * then it is parsed as a 2 character octal code *)
     if code < 256 then
-      env, str, [|code|], true
+      env, str, [|Uchar.of_int code|], true
     else
       let remainder = code land 7 in
       let code = code lsr 3 in
-      env, str, [|code; Char.code '0' + remainder|], true
+      env, str, [|(Uchar.of_int code); Uchar.of_int (Char.code '0' + remainder) |], true
 
   | '0'..'7', '0'..'7' ->
     let str = lexeme lexbuf in
     let code = int_of_string ("0o"^str) in (* 0o01 *)
-    env, str, [|code|], true
+    env, str, [|Uchar.of_int code|], true
 
-  | '0' -> env, "0", [|0x0|], false
-  | 'b' -> env, "b", [|0x8|], false
-  | 'f' -> env, "f", [|0xC|], false
-  | 'n' -> env, "n", [|0xA|], false
-  | 'r' -> env, "r", [|0xD|], false
-  | 't' -> env, "t", [|0x9|], false
-  | 'v' -> env, "v", [|0xB|], false
+  | '0' -> env, "0", [|Uchar.of_int 0x0|], false
+  | 'b' -> env, "b", [|Uchar.of_int 0x8|], false
+  | 'f' -> env, "f", [|Uchar.of_int 0xC|], false
+  | 'n' -> env, "n", [|Uchar.of_int 0xA|], false
+  | 'r' -> env, "r", [|Uchar.of_int 0xD|], false
+  | 't' -> env, "t", [|Uchar.of_int 0x9|], false
+  | 'v' -> env, "v", [|Uchar.of_int 0xB|], false
   | '0'..'7' ->
     let str = lexeme lexbuf in
     let code = int_of_string ("0o"^str) in (* 0o1 *)
-    env, str, [|code|], true
+    env, str, [|Uchar.of_int code|], true
 
   | 'u', hex_quad ->
     let str = lexeme lexbuf in
     let hex = String.sub str 1 (String.length str - 1) in
     let code = int_of_string ("0x"^hex) in
-    env, str, [|code|], false
+    env, str, [|Uchar.of_int code|], false
 
   | "u{", Plus hex_digit, '}' ->
     let str = lexeme lexbuf in
@@ -502,7 +502,7 @@ let string_escape env lexbuf =
       then illegal env (loc_of_lexbuf env lexbuf)
       else env
     in
-    env, str, [|code|], false
+    env, str, [|Uchar.of_int code|], false
 
   | 'u' | 'x' | '0'..'7' ->
     let str = lexeme lexbuf in
@@ -542,7 +542,7 @@ let rec string_quote env q buf raw octal lexbuf =
     let env, str, codes, octal' = string_escape env lexbuf in
     let octal = octal' || octal in
     Buffer.add_string raw str;
-    Array.iter (Wtf8.add_wtf_8 buf) codes;
+    Array.iter (Wtf8.add_wtf_8 buf) (Array.map Uchar.to_int codes);
     string_quote env q buf raw octal lexbuf
 
   | '\n' ->
@@ -591,7 +591,7 @@ let rec template_part env cooked raw literal lexbuf =
     let env, str, codes, _ = string_escape env lexbuf in
     Buffer.add_string raw str;
     Buffer.add_string literal str;
-    Array.iter (Wtf8.add_wtf_8 cooked) codes;
+    Array.iter (Wtf8.add_wtf_8 cooked) (Array.map Uchar.to_int codes);
     template_part env cooked raw literal lexbuf
 
   (* ECMAScript 6th Syntax, 11.8.6.1 Static Semantics: TV's and TRV's

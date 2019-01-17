@@ -1,5 +1,5 @@
 {
-  "name": "boxre",
+  "name": "bs-flow-parser",
   "version": "0.1.0",
   "bsc-flags": ["-bs-super-errors", "-bs-no-version-header"],
   "refmt": 3,
@@ -15,9 +15,18 @@
     }
   ],
   "sources": [
-    "src",
-    "src/vendor/wtf8",
-    "src/parser"
+    {
+      "dir": "src",
+      "subdirs": [
+        {
+          "dir": "vendor/wtf8"
+        },
+        {
+          "dir": "js",
+          "backend": ["js"]
+        }
+      ]
+    }
   ],
   "ppx-flags": [
     "ppx-sedlex/ppx.js"
@@ -29,5 +38,5 @@
     "bs-sedlex"
   ],
   "bs-dev-dependencies": [],
-  "namespace": false
+  "namespace": true
 }

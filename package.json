@@ -1,25 +1,35 @@
 {
-  "name": "box.re",
-  "version": "0.0.1",
+  "name": "bs-flow-parser",
+  "version": "0.91.0",
   "author": "Phil Pluckthun <phil@kitten.sh>",
+  "main": "./lib/js/src/js/flow_parser_js.js",
+  "module": "./lib/es6/src/js/flow_parser_js.js",
+  "files": [
+    "lib/js",
+    "lib/es6",
+    "src",
+    "bsconfig.json"
+  ],
   "scripts": {
     "clean": "bsb -clean-world",
     "build": "bsb -make-world",
     "watch": "bsb -make-world -w"
   },
-  "repository": "https://github.com/kitten/box.re",
-  "homepage": "https://github.com/kitten/box.re",
-  "bugs": "https://github.com/kitten/box.re/issues",
+  "repository": "https://github.com/kitten/bs-flow-parser",
+  "homepage": "https://github.com/kitten/bs-flow-parser",
+  "bugs": "https://github.com/kitten/bs-flow-parser/issues",
   "license": "MIT",
   "devDependencies": {
-    "bs-platform": "^4.0.18",
-    "npm-run-all": "^4.1.5",
-    "ppx-sedlex": "^1.99.4-pre.8"
+    "bs-platform": "^4.0.18"
+  },
+  "peerDependencies": {
+    "bs-platform": "^4.0.18"
   },
   "dependencies": {
     "@elliottcable/bs-gen": "^0.5.1",
     "@elliottcable/bs-uchar": "^0.0.2",
     "@glennsl/bs-json": "^3.0.0",
-    "bs-sedlex": "^1.99.4-pre.8"
+    "bs-sedlex": "^1.99.4-pre.8",
+    "ppx-sedlex": "^1.99.4-pre.8"
   }
 }

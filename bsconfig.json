@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "bsc-flags": ["-bs-super-errors", "-bs-no-version-header"],
   "refmt": 3,
+  "warnings": {
+    "number": "-44-45"
+  },
   "package-specs": [
     {
       "module": "commonjs"

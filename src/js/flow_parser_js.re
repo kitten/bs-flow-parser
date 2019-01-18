@@ -1,18 +1,16 @@
-[@bs.new] external createRegex : (string, string) => _ = "RegExp";
-
 module JsTranslator: Translator_intf.S = {
   type t = Js.Json.t;
 
-  let string = Json.Encode.string;
-  let bool = Json.Encode.bool;
-  let obj = Json.Encode.object_;
-  let array = arr => Json.Encode.jsonArray(Array.of_list(arr));
-  let number = Json.Encode.float;
-  let null = Json.Encode.null;
+  let string = Json_encode.string;
+  let bool = Json_encode.bool;
+  let obj = Json_encode.obj;
+  let array = arr => Json_encode.jsonArray(Array.of_list(arr));
+  let number = Json_encode.float;
+  let null = Json_encode.null;
 
   let regexp = (_loc, pattern, flags) => {
-    try (createRegex(pattern, flags)) {
-    | _ => createRegex("", flags)
+    try (Json_encode.regexp(pattern, flags)) {
+    | _ => Json_encode.regexp("", flags)
     }
   };
 };

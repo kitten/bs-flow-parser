@@ -32,7 +32,6 @@
     "ppx-sedlex/ppx.js"
   ],
   "bs-dependencies" : [
-    "@glennsl/bs-json",
     "@elliottcable/bs-gen",
     "@elliottcable/bs-uchar",
     "bs-sedlex"

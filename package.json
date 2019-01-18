@@ -28,7 +28,6 @@
   "dependencies": {
     "@elliottcable/bs-gen": "^0.5.1",
     "@elliottcable/bs-uchar": "^0.0.2",
-    "@glennsl/bs-json": "^3.0.0",
     "bs-sedlex": "^1.99.4-pre.8",
     "ppx-sedlex": "^1.99.4-pre.8"
   }

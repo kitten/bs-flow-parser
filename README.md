@@ -7,6 +7,7 @@ to get it to compile, mostly due to BuckleScript's older version of OCaml.
 > NOTE: The most significant alterations can be seen by going back to this repo's commit
 > [that adds the original Flow parser source files](https://github.com/kitten/bs-flow-parser/commit/4544435)
 > that were needed for the basic parser and lexer.
+> A patch file that summarises the changes can be found [here](./patches/flow-parser-0.91.0-to-bs.patch).
 
 Furthermore the modules that will probably interest you as they're the
 entrypoint modules, `Flow_parser` and `Flow_parser_js`, are fully

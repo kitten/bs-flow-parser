@@ -2,19 +2,22 @@
   "name": "bs-flow-parser",
   "version": "0.91.0",
   "author": "Phil Pluckthun <phil@kitten.sh>",
-  "main": "./lib/js/src/js/flow_parser_js.js",
-  "module": "./lib/es6/src/js/flow_parser_js.js",
+  "main": "./dist/flow_parser.bundle.js",
   "files": [
+    "dist",
     "lib/js",
     "lib/es6",
     "src",
+    "es.js",
+    "cjs.js",
     "bsconfig.json"
   ],
   "scripts": {
     "clean": "bsb -clean-world",
     "build": "bsb -make-world",
     "watch": "bsb -make-world -w",
-    "prepublishOnly": "run-s clean build"
+    "bundle": "webpack-cli",
+    "prepublishOnly": "run-s clean build bundle"
   },
   "repository": "https://github.com/kitten/bs-flow-parser",
   "homepage": "https://github.com/kitten/bs-flow-parser",
@@ -22,7 +25,9 @@
   "license": "MIT",
   "devDependencies": {
     "bs-platform": "^4.0.18",
-    "npm-run-all": "^4.1.5"
+    "npm-run-all": "^4.1.5",
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1"
   },
   "peerDependencies": {
     "bs-platform": "^4.0.18"

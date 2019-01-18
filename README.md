@@ -30,3 +30,6 @@ The entire package is namespaced to `BsFlowParser`. It can be installed from npm
 
 > NOTE: If you're looking to use this package in JavaScript, it will work, but it's nonetheless recommended to use the
 > official JSoO compiled version [`flow-parser`](https://npmjs.com/package/flow-parser)
+
+A small, non-scientific benchmark can be found [here](./benchmark/README.md), tl;dr performance of the bundled parser
+seems to be on par with the JSoO version on npm.

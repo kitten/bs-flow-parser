@@ -1,6 +1,6 @@
 {
   "name": "bs-flow-parser",
-  "version": "0.91.0",
+  "version": "0.91.0-1",
   "author": "Phil Pluckthun <phil@kitten.sh>",
   "main": "./dist/flow_parser.bundle.js",
   "files": [

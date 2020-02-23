@@ -1,7 +1,7 @@
 # bs-flow-parser
 
 This is [Flow's](https://github.com/facebook/flow) [parser](https://github.com/facebook/flow/tree/master/src/parser) modified
-and packages for BuckleScript. The changes that have been made are not alterations to how the Flow parser works, but simply
+and packaged for BuckleScript. The changes that have been made are not alterations to how the Flow parser works, but simply
 to get it to compile, mostly due to BuckleScript's older version of OCaml.
 
 > NOTE: The most significant alterations can be seen by going back to this repo's commit

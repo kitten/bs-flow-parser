@@ -14,7 +14,7 @@ entrypoint modules, `Flow_parser` and `Flow_parser_js`, are fully
 customised.
 
 The entire package is namespaced to `BsFlowParser`. It can be installed from npm:
-`yarn add wonka` or `npm install --save wonka`, after which you can add the module to your `bsconfig.json`:
+`yarn add bs-flow-parser` or `npm install --save bs-flow-parser`, after which you can add the module to your `bsconfig.json`:
 
 ```diff
 {

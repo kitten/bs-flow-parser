@@ -1,7 +1,7 @@
 # bs-flow-parser
 
 This is [Flow's](https://github.com/facebook/flow) [parser](https://github.com/facebook/flow/tree/master/src/parser) modified
-and packages for BuckleScript. The changes that have been made are not alterations to how the Flow parser works, but simply
+and packaged for BuckleScript. The changes that have been made are not alterations to how the Flow parser works, but simply
 to get it to compile, mostly due to BuckleScript's older version of OCaml.
 
 > NOTE: The most significant alterations can be seen by going back to this repo's commit
@@ -14,7 +14,7 @@ entrypoint modules, `Flow_parser` and `Flow_parser_js`, are fully
 customised.
 
 The entire package is namespaced to `BsFlowParser`. It can be installed from npm:
-`yarn add wonka` or `npm install --save wonka`, after which you can add the module to your `bsconfig.json`:
+`yarn add bs-flow-parser` or `npm install --save bs-flow-parser`, after which you can add the module to your `bsconfig.json`:
 
 ```diff
 {
